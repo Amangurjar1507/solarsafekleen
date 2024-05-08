@@ -24,8 +24,16 @@ export interface UserVerifyProps {
 }
 
 const VerifyOtp: FC = () => {
-  const {ref, props, getCellOnLayoutHandler, value, setValue, loading} =
-    useVerifyOtp();
+  const {
+    ref,
+    errorObject,
+    props,
+    validateVerify,
+    getCellOnLayoutHandler,
+    value,
+    setValue,
+    loading,
+  } = useVerifyOtp();
 
   return (
     <ImageBackground
@@ -77,7 +85,14 @@ const VerifyOtp: FC = () => {
                     </Text>
                   )}
                 />
-                <Button label="Submit" containerStyle={styles.btnStyle} />
+                {errorObject.otpError && (
+                  <Text style={{color: 'red'}}>{errorObject.otpError}</Text>
+                )}
+                <Button
+                  label="Submit"
+                  containerStyle={styles.btnStyle}
+                  onPress={validateVerify}
+                />
               </View>
             </View>
           </View>

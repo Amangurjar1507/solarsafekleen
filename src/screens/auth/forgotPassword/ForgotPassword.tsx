@@ -20,11 +20,11 @@ import useForgotPassword from './useForgotPassword';
 export interface UserForgotProps {
   email: string;
   loading: boolean;
-  
 }
 
 const ForgotPassword: FC = () => {
-  const {onClickVerify, email,loading, setEmail} = useForgotPassword();
+  const {errorObject, email, loading, setEmail, validateForgot} =
+    useForgotPassword();
 
   return (
     <ImageBackground
@@ -46,16 +46,17 @@ const ForgotPassword: FC = () => {
               <Text style={styles.headingText}>Forgot Password</Text>
               <View style={styles.formContainer}>
                 <InputContainer
-                  placeholder="akshaysyal@gmail.com"
+                  placeholder="E-mail"
                   labelSecond="E-mail"
                   keyboardType="email-address"
                   value={email}
                   onChangeText={setEmail}
+                  error={errorObject.emailError}
                 />
                 <Button
                   label="Submit"
                   containerStyle={styles.btnStyle}
-                  onPress={onClickVerify}
+                  onPress={validateForgot}
                   isLoading={loading}
                 />
               </View>

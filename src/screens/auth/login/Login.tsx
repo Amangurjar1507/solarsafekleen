@@ -1,6 +1,5 @@
 import React, {FC} from 'react';
 import {
-  Image,
   ImageBackground,
   KeyboardAvoidingView,
   Platform,
@@ -20,27 +19,19 @@ import SvgIndex from '../../../assets/svgIndex';
 import imageIndex from '../../../assets/imageIndex';
 import color from '../../../theme/color';
 
-export interface LoginProps {
-  userLogin: UserLoginProps;
-}
-
-export interface UserLoginProps {
-  email: string;
-  password: string;
-  loading: boolean;
-}
+ 
 
 const Login: FC = () => {
-  
   const {
     email,
     setEmail,
     password,
     setPassword,
-    onLogin,
-    onClickSignUp,
+     onClickSignUp,
     onClickForgot,
-    loading
+    loading,
+    validateLogin,
+    errorObject,
   } = useLogin();
 
   return (
@@ -69,8 +60,9 @@ const Login: FC = () => {
               <Text style={styles.headingText}>Log in</Text>
               <View style={styles.formContainer}>
                 <InputContainer
-                  placeholder="akshaysyal@gmail.com"
+                  placeholder="E-mail"
                   labelSecond="E-mail"
+                  placeholderTextColor={color.label}
                   keyboardType="email-address"
                   returnKeyType="Done"
                   closeImage
@@ -81,9 +73,10 @@ const Login: FC = () => {
                   onChangeText={(text: string) => {
                     setEmail(text.trim());
                   }}
+                  error={errorObject.emailError}
                 />
                 <InputContainer
-                  placeholder="********"
+                  placeholder="Password"
                   placeholderTextColor={'green'}
                   labelSecond="Password"
                   value={password}
@@ -92,12 +85,13 @@ const Login: FC = () => {
                   }}
                   returnKeyType="Done"
                   hideText={true}
+                  error={errorObject.passwordError}
                 />
                 <Button
                   label="Log in"
                   containerStyle={styles.btnStyle}
-                   onPress={onLogin}
-                   isLoading={loading}
+                  onPress={validateLogin}
+                  isLoading={loading}
                 />
                 <TouchableOpacity
                   style={styles.forgotPassButton}

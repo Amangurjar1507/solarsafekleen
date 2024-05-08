@@ -27,10 +27,11 @@ const styles = StyleSheet.create({
     paddingStart: 12,
   },
   errorLabel: {
-    fontSize: 12,
+    fontSize: 13,
     lineHeight: 22,
-    marginTop: 6,
+    marginTop: 8,
     fontFamily: font.PoppinsMedium,
+    color:color.red
   },
   labelSecond: {
     color: color.label,

@@ -12,6 +12,7 @@ import {
   ViewStyle,
 } from 'react-native';
 import style from './button.style';
+import color from '../../../theme/color';
 
 interface ButtonProps {
   label: string;
@@ -48,16 +49,18 @@ const Button: FC<ButtonProps> = ({
         onPress={onPress}
         disabled={disabled || inActive}
         {...buttonProps}>
-        {isLoading && (
+        {isLoading ? (
           <ActivityIndicator
             size="small"
             style={style.indicatorStyle}
             {...activityProps}
+            color={color.white}
           />
-        )}
-        <View style={style.iconView}>
+        ) : (
           <Text style={[style.nameStyle, nameTextStyle]}>{label}</Text>
-        </View>
+        )}
+        {/* <View style={style.iconView}> */}
+        {/* </View> */}
       </TouchableOpacity>
     </View>
   );

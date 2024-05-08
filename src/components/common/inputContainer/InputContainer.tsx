@@ -62,8 +62,11 @@ const InputContainer: FC<any> = ({
           maxLength={maxLength}
         />
         {closeImage && (
-          <TouchableOpacity style={{right: 12}} activeOpacity={0.8} onPress={onPressClose}>
-            <SvgIndex.close  />
+          <TouchableOpacity
+            style={{right: 12}}
+            activeOpacity={0.8}
+            onPress={onPressClose}>
+            <SvgIndex.close />
           </TouchableOpacity>
         )}
         {hideText && (

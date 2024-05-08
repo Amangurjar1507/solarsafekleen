@@ -30,6 +30,8 @@ const SignUp: FC = () => {
     confirmPassword,
     setConfirmPassword,
     loading,
+    validateSignup,
+    errorObject,
   } = useSignUp();
 
   return (
@@ -58,23 +60,25 @@ const SignUp: FC = () => {
               <Text style={styles.headingText}>Sign up</Text>
               <View style={styles.formContainer}>
                 <InputContainer
-                  placeholder="akshaysyal@gmail.com"
+                  placeholder="E-mail"
                   labelSecond="E-mail"
                   keyboardType="email-address"
                   closeImage
                   value={email}
                   onChangeText={setEmail}
+                  error={errorObject.emailError}
                 />
                 <InputContainer
-                  placeholder="+91 9876543210"
-                  placeholderTextColor={'green'}
+                  placeholder="Mobile Number"
                   labelSecond="Mobile Number"
                   keyboardType="decimal-pad"
                   value={mobileNumber}
                   onChangeText={setMobileNumber}
+                  error={errorObject.mobileNumberError}
+                  maxLength={10}
                 />
                 <InputContainer
-                  placeholder="********"
+                  placeholder="Password"
                   placeholderTextColor={'green'}
                   labelSecond="Password"
                   eyesShow
@@ -82,8 +86,9 @@ const SignUp: FC = () => {
                   onChangeText={setPassword}
                   returnKeyType="Done"
                   hideText={true}
+                  error={errorObject.passwordError}
                 />
-                <InputContainer
+                {/* <InputContainer
                   placeholder="********"
                   placeholderTextColor={'green'}
                   labelSecond="Confirm Password"
@@ -92,11 +97,12 @@ const SignUp: FC = () => {
                   onChangeText={setConfirmPassword}
                   returnKeyType="Done"
                   hideText={true}
-                />
+                /> */}
                 <Button
                   label="Sign Up"
                   containerStyle={styles.btnStyle}
                   isLoading={loading}
+                  onPress={validateSignup}
                 />
               </View>
             </View>

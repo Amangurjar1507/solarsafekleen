@@ -1,6 +1,16 @@
 import {useCallback, useState} from 'react';
-import { useAuthNavigation } from '../../../hooks/useAppNavigation';
- 
+import {useAuthNavigation} from '../../../hooks/useAppNavigation';
+import {
+  checkEmail,
+  checkMobileNumber,
+} from '../../../validation/stringValidation';
+import validationMessage from '../../../validation/validationMessage';
+import axiosInstance from '../../../services/api';
+import params from '../../../services/config/params';
+import constant from '../../../services/config/constant';
+import {ToastMessage} from '../../../utility/ToastMessage';
+import {Log} from '../../../utility/log';
+
 const useSignUp = () => {
   const navigation = useAuthNavigation();
   const [email, setEmail] = useState<string>('');
@@ -8,13 +18,70 @@ const useSignUp = () => {
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
-
-  const [error, setError] = useState<any>({
-    email: undefined,
+  const [errorObject, setErrorObject] = useState<any>({
+    emailError: undefined,
     mobileNumberError: undefined,
     passwordError: undefined,
-    confirmPasswordError: undefined,
   });
+
+  const validateSignup = () => {
+    let isValidate = true;
+    if (!email) {
+      isValidate = false;
+      errorObject.emailError = validationMessage.emptyEmail;
+    } else if (!checkEmail(email)) {
+      isValidate = false;
+      errorObject.emailError = validationMessage.invalidEmail;
+    } else {
+      errorObject.emailError = undefined;
+    }
+    if (!password) {
+      isValidate = false;
+      errorObject.passwordError = validationMessage.emptyPassword;
+    } else {
+      errorObject.passwordError = '';
+    }
+    if (!mobileNumber) {
+      isValidate = false;
+      errorObject.mobileNumberError = validationMessage.emptyMobile;
+    } else if (!checkMobileNumber(mobileNumber)) {
+      isValidate = false;
+      errorObject.mobileNumberError = validationMessage.invalidMobile;
+    } else {
+      errorObject.mobileNumberError = '';
+    }
+    setErrorObject({...errorObject});
+    if (isValidate) {
+      onPressLogin(); // loginApiCall();
+    }
+  };
+
+  const onSignUpApi = (detail: any, type: string) => {
+    let data = {
+      [params.email]: email,
+      [params.email]: password,
+      [params.email]: mobileNumber,
+    };
+    axiosInstance
+      .post(constant.signUp, data)
+      .then(response => {
+        setPassword(''), setEmail('');
+        // navigation.reset({
+        //   index: 0,
+        //   routes: [{name: 'HomeBottomTabs'}],
+        // });
+        // ToastMessage({message: data?.message});
+        Log('Social Login Details Response::', response.data);
+      })
+      .catch((err: any) => {
+        // navigation.navigate('signup', {
+        //   item: detail,
+        //   type: 'social',
+        // });
+        // toast(err?.response.data.message);
+        Log('Social Login Details Error::', err?.response);
+      });
+  };
 
   //** Navigate to login screen */
   const onPressLogin = useCallback(() => {
@@ -27,7 +94,7 @@ const useSignUp = () => {
   return {
     email,
     setEmail,
-    error,
+    errorObject,
     onPressLogin,
     mobileNumber,
     setMobileNumber,
@@ -35,7 +102,8 @@ const useSignUp = () => {
     setPassword,
     confirmPassword,
     setConfirmPassword,
-    loading
+    loading,
+    validateSignup,
   };
 };
 

@@ -18,6 +18,8 @@ import FeedBack from '../../screens/bottomScreen/feedBack/FeedBack';
 import Maps from '../../screens/bottomScreen/mapScreen/map/Maps';
 import Successfully from '../../screens/bottomScreen/profileScreen/successfully/Successfully';
 import PaymentMethod from '../../screens/bottomScreen/paymentMethod/PaymentMethod';
+import {useSelector} from 'react-redux';
+import {RootState} from '@reduxjs/toolkit/query';
 
 export type RootStackParams = {
   Splash: undefined;
@@ -44,9 +46,18 @@ export type RootStackParams = {
 const Stack = createNativeStackNavigator<RootStackParams>();
 
 const RootStack: FC = () => {
+  const userReducer = useSelector((state: any) => state.userReducer);
+  const initialScreen = () => {
+    if (userReducer?.isLogin) {
+      return 'bottomTabNav';
+    } else {
+      return 'Login';
+    }
+  };
   return (
     <Stack.Navigator
       initialRouteName={'Splash'}
+      // initialRouteName={initialScreen()}
       screenOptions={{
         headerShown: false,
       }}>
