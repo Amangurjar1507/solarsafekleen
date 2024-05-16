@@ -16,16 +16,10 @@ interface ItemProps {
 const OfferCard: FC<OfferCardCardProps> = ({item, key,onUserOfferClick}: any) => {
   return (
     <View style={styles.itemContainer}>
-      <TouchableOpacity style={{marginVertical: 20}} onPress={onUserOfferClick}>
+      <TouchableOpacity style={styles.touchable} onPress={onUserOfferClick}>
         <Image
           source={{uri: item?.image}}
-          style={{
-            height: 170,
-            width: 240,
-            borderWidth: 1,
-            borderRadius: 10,
-            margin: 1.5,
-          }}
+          style={styles.img}
           resizeMode="cover"
         />
       </TouchableOpacity>

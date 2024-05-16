@@ -32,10 +32,10 @@ const Ongoing = () => {
       <Header
         backIconsShown
         lable="#524587"
-        lableStyle={{color: color.black}}
+        lableStyle={styles.lableStyle}
       />
       <ScrollView
-        style={{flexGrow: 1}}
+        style={styles.scrollViewstyle}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}>
         <View style={styles.mainRow}>
@@ -108,7 +108,6 @@ const Ongoing = () => {
               </View>
             )}
           />
-
           <View style={styles.cardRed}>
             <Text style={styles.canCellText}>CanCellation Policy</Text>
             <Text style={styles.subTitle}>
@@ -135,7 +134,7 @@ const Ongoing = () => {
           <Button
             label="Cancel Booking"
             containerStyle={styles.containerStyle}
-            nameTextStyle={{color: color.butt}}
+            nameTextStyle={styles.nameTextStyle}
             onPress={onCancleBooking}
           />
         </View>

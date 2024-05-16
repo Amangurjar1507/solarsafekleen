@@ -1,15 +1,12 @@
 import {View, Text, FlatList, ScrollView, TouchableOpacity} from 'react-native';
-import {
-  Button,
-  CustomStatusbar,
-  Header,
-} from '../../components/componentsIndex';
+
 import styles from './accepted.style';
-import color from '../../theme/color';
-import useCleaningControl from './useCleaningProceed';
+ import useCleaningControl from './useCleaningProceed';
 import {dayData} from './constData';
-import ApartmentCard from '../../components/card/apartmentCard/ApartmentCard';
-import {useState} from 'react';
+ import {useState} from 'react';
+import { CustomStatusbar, Header } from '../../../components/componentsIndex';
+import color from '../../../theme/color';
+import ApartmentCard from '../../../components/card/apartmentCard/ApartmentCard';
 
 const CleaningApartment = () => {
   const [selectedItem, setSelectedItem] = useState(null);

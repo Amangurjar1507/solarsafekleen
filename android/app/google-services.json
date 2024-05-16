@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "208815319343",
+    "project_id": "solarsafekleen-4e141",
+    "storage_bucket": "solarsafekleen-4e141.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208815319343:android:052f47f0b2188c117199da",
+        "android_client_info": {
+          "package_name": "com.solarsafekleen"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAcPUQGeaC9BJYJV0oK5fpdJJfSibxxSE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

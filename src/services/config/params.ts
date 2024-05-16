@@ -1,5 +1,6 @@
 export default {
-   email: 'email',
+  email: 'email',
   password: 'password',
- 
+  mobileNumber: 'mobileNumber',
+  otp:"otp"
 };

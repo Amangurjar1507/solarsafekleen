@@ -1,14 +1,15 @@
-import {useCallback, useState} from 'react';
+import {useCallback, useEffect, useRef, useState} from 'react';
 import {useAuthNavigation} from '../../../hooks/useAppNavigation';
 import validationMessage from '../../../validation/validationMessage';
 import {checkEmail} from '../../../validation/stringValidation';
 import axiosInstance from '../../../services/api';
-import params from '../../../services/config/params';
+import {Animated} from 'react-native';
 import constant from '../../../services/config/constant';
-import {Log} from '../../../utility/log';
 import {useDispatch} from 'react-redux';
 import {loginSuccess} from '../../../services/config/redux/userReducer/reducer';
 import {ToastMessage} from '../../../utility/ToastMessage';
+import color from '../../../theme/color';
+import params from '../../../services/config/params';
 
 const useLogin = () => {
   const navigation = useAuthNavigation();
@@ -20,13 +21,29 @@ const useLogin = () => {
     emailError: undefined,
     passwordError: undefined,
   });
+
+  const buttonOpacity = useRef(new Animated.Value(0)).current;
+  const inputTranslateY = useRef(new Animated.Value(100)).current;
+
+  useEffect(() => {
+    // Button animation
+    Animated.timing(buttonOpacity, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+    // Input fields animation
+    Animated.timing(inputTranslateY, {
+      toValue: 0,
+      duration: 800,
+      useNativeDriver: true,
+      
+    }).start();
+  }, []);
+
   const onLogin = useCallback(() => {
     navigation.navigate('HomeBottomTabs');
   }, [navigation]);
-
-  let data = {
-    name: 'Ram',
-  };
 
   const validateLogin = () => {
     let isValid = true;
@@ -45,46 +62,49 @@ const useLogin = () => {
     } else {
       errorObject.passwordError = '';
     }
-    setErrorObject({...errorObject});
+    setErrorObject({...errorObject}); // Update errorObject with the new error messages
     if (isValid) {
-      setPassword(''), setEmail('');
-      dispatch(loginSuccess(data));
-      navigation.navigate('HomeBottomTabs');
-      // loginApi();
+      uerLoginApi(); // Call the API only if all validations pass
     }
   };
 
-  const onClickSignUp = useCallback(() => {
-    navigation.navigate('SignUp');
-  }, [navigation]);
-
-  const loginApi = (detail: any, type: string) => {
+  const uerLoginApi = () => {
+    setLoading(true);
     let data = {
       [params.email]: email,
-      [params.email]: password,
+      [params.password]: password,
     };
     axiosInstance
       .post(constant.login, data)
       .then(response => {
-        dispatch(loginSuccess(response.data.data));
+        setLoading(false);
+        dispatch(loginSuccess(response));
+        ToastMessage(response?.data?.message, color.green);
         setPassword(''), setEmail('');
         navigation.reset({
           index: 0,
           routes: [{name: 'HomeBottomTabs'}],
         });
-        ToastMessage('response.data.message');
-        Log('Social Login Details Response::', response.data);
       })
       .catch((err: any) => {
-        ToastMessage('err');
-        // navigation.navigate('signup', {
-        //   item: detail,
-        //   type: 'social',
-        // });
-        // toast(err?.response.data.message);
-        Log('Social Login Details Error::', err?.response);
+        setLoading(false);
+        if (
+          err?.response &&
+          err?.response?.data &&
+          err?.response?.data?.error
+        ) {
+          ToastMessage(err?.response?.data?.error, color.warning);
+        } else {
+          ToastMessage(
+            'An error occurred. Please try again later.',
+            color.warning,
+          );
+        }
       });
   };
+  const onClickSignUp = useCallback(() => {
+    navigation.navigate('SignUp');
+  }, [navigation]);
 
   const onClickForgot = useCallback(() => {
     navigation.navigate('ForgotPassword');
@@ -102,6 +122,8 @@ const useLogin = () => {
     validateLogin,
     errorObject,
     setErrorObject,
+    buttonOpacity,
+    inputTranslateY,
   };
 };
 

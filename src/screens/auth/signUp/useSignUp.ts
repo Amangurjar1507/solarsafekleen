@@ -1,4 +1,5 @@
-import {useCallback, useState} from 'react';
+import {useCallback, useEffect, useRef, useState} from 'react';
+import {Animated} from 'react-native';
 import {useAuthNavigation} from '../../../hooks/useAppNavigation';
 import {
   checkEmail,
@@ -6,10 +7,10 @@ import {
 } from '../../../validation/stringValidation';
 import validationMessage from '../../../validation/validationMessage';
 import axiosInstance from '../../../services/api';
-import params from '../../../services/config/params';
 import constant from '../../../services/config/constant';
 import {ToastMessage} from '../../../utility/ToastMessage';
-import {Log} from '../../../utility/log';
+import color from '../../../theme/color';
+import params from '../../../services/config/params';
 
 const useSignUp = () => {
   const navigation = useAuthNavigation();
@@ -24,6 +25,25 @@ const useSignUp = () => {
     passwordError: undefined,
   });
 
+  const buttonOpacity = useRef(new Animated.Value(0)).current;
+  const inputTranslateY = useRef(new Animated.Value(100)).current;
+
+  useEffect(() => {
+    // Button animation
+    Animated.timing(buttonOpacity, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+
+    // Input fields animation
+    Animated.timing(inputTranslateY, {
+      toValue: 0,
+      duration: 800,
+      useNativeDriver: true,
+    }).start();
+  }, []);
+  // Call  all validations pass
   const validateSignup = () => {
     let isValidate = true;
     if (!email) {
@@ -52,34 +72,43 @@ const useSignUp = () => {
     }
     setErrorObject({...errorObject});
     if (isValidate) {
-      onPressLogin(); // loginApiCall();
+      onSignUpApi();// Call the API only if all validations pass
     }
   };
 
-  const onSignUpApi = (detail: any, type: string) => {
+  // Signup api call
+  const onSignUpApi = () => {
+    setLoading(true);
     let data = {
       [params.email]: email,
-      [params.email]: password,
-      [params.email]: mobileNumber,
+      [params.password]: password,
+      [params.mobileNumber]: mobileNumber,
     };
     axiosInstance
       .post(constant.signUp, data)
       .then(response => {
-        setPassword(''), setEmail('');
-        // navigation.reset({
-        //   index: 0,
-        //   routes: [{name: 'HomeBottomTabs'}],
-        // });
-        // ToastMessage({message: data?.message});
-        Log('Social Login Details Response::', response.data);
+        setLoading(false);
+        setPassword('');
+        setEmail('');
+        ToastMessage(response?.data?.message, color.green);
+        navigation.navigate('Login');
       })
-      .catch((err: any) => {
-        // navigation.navigate('signup', {
-        //   item: detail,
-        //   type: 'social',
-        // });
-        // toast(err?.response.data.message);
-        Log('Social Login Details Error::', err?.response);
+      .catch(err => {
+        setLoading(false);
+        setPassword('');
+        setEmail('');
+        if (
+          err?.response &&
+          err?.response?.data &&
+          err?.response?.data?.message
+        ) {
+          ToastMessage(err?.response?.data?.message, color.warning);
+        } else {
+          ToastMessage(
+            'An error occurred. Please try again later.',
+            color.warning,
+          );
+        }
       });
   };
 
@@ -104,6 +133,8 @@ const useSignUp = () => {
     setConfirmPassword,
     loading,
     validateSignup,
+    inputTranslateY,
+    buttonOpacity,
   };
 };
 

@@ -9,7 +9,7 @@ const useCleaningApartment = () => {
   const [modal, setModal] = useState(false);
 
   const onPayment = useCallback(() => {
-    navigation.navigate('PaymentMethod');
+    navigation.navigate('Successfully');
   }, [navigation]);
   const handleItemSelected = (item: any) => {
     setSelectedItem(item);

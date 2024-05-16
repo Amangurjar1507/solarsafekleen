@@ -3,7 +3,7 @@ import color from '../../../theme/color';
 
  
 const styles = StyleSheet.create({
-  
+
   itemContainer: {
     justifyContent: 'center',
       margin:3

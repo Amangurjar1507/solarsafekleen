@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import {useCallback, useState} from 'react';
+import {useCallback} from 'react';
 
 const useOnGoing = () => {
   const navigation = useNavigation();

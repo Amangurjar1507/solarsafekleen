@@ -46,4 +46,12 @@ export const styles = StyleSheet.create({
     height: 22,
     width: 22,
   },
+  userImg: {
+    height: 22,
+    width: 22,
+  },
+  bookingImg: {
+    height: 26,
+    width: 26,
+  },
 });

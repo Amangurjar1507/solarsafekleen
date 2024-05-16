@@ -63,7 +63,7 @@ const CustomHomeBottomTabs = props => {
           <View style={styles.imageView}>
             <Image
               source={imageIndex.booking}
-              style={{height: 26, width: 26}}
+              style={styles.bookingImg}
               resizeMode="cover"
               tintColor={index === 2 ? color.butt : color.black}
             />
@@ -85,7 +85,7 @@ const CustomHomeBottomTabs = props => {
           <View style={styles.imageView}>
             <Image
               source={imageIndex.user}
-              style={{height: 22, width: 22}}
+              style={styles.userImg}
               tintColor={index === 3 ? color.butt : color.black}
               resizeMode="cover"
             />

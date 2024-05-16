@@ -31,7 +31,7 @@ const CleaningApartment = () => {
       />
       <Header
         backIconsShown
-        lable="Cockroach Control"
+        lable="Cleaning Control"
         lableStyle={{color: color.black}}
       />
       <ScrollView

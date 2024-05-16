@@ -47,7 +47,7 @@ const Maps = () => {
       </View>
     );
   };
-  const NewDta = () => {
+  const HomeTabs = () => {
     return (
       <View style={{flex: 1}}>
         <FlatList
@@ -95,8 +95,8 @@ const Maps = () => {
       <CustomTabs tabs={tabs} activeTab={activeTab} onPress={handleTabPress} />
       <View style={styles.mainView}>
         <View style={styles.tabRow}>
-          {activeTab === 0 && <NewDta />}
-          {activeTab === 1 && <NewDta />}
+          {activeTab === 0 && <HomeTabs />}
+          {activeTab === 1 && <HomeTabs />}
         </View>
         <View style={styles.buttView}>
           <Button
@@ -111,3 +111,4 @@ const Maps = () => {
 };
 
 export default Maps;
+ 

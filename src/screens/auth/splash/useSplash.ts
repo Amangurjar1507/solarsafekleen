@@ -1,10 +1,10 @@
-import {useCallback} from 'react';
+import {useCallback, useEffect} from 'react';
 import {useAuthNavigation} from '../../../hooks/useAppNavigation';
-import {ToastMessage} from '../../../utility/ToastMessage';
-
 const useSplash = () => {
-  const navigation = useAuthNavigation();
 
+  const navigation = useAuthNavigation();
+  
+ 
   //** Navigate to signup screen */
   const onClickSignUp = useCallback(() => {
     navigation.navigate('SignUp');
@@ -12,7 +12,7 @@ const useSplash = () => {
 
   //** Navigate to login screen */
   const onClickLogin = useCallback(() => {
-     navigation.navigate('Login');
+    navigation.navigate('Login');
   }, [navigation]);
 
   return {

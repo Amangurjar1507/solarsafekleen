@@ -19,7 +19,7 @@ import Maps from '../../screens/bottomScreen/mapScreen/map/Maps';
 import Successfully from '../../screens/bottomScreen/profileScreen/successfully/Successfully';
 import PaymentMethod from '../../screens/bottomScreen/paymentMethod/PaymentMethod';
 import {useSelector} from 'react-redux';
-import {RootState} from '@reduxjs/toolkit/query';
+import ResetPassword from '../../screens/auth/resetPassword/ResetPassword';
 
 export type RootStackParams = {
   Splash: undefined;
@@ -41,23 +41,24 @@ export type RootStackParams = {
   Maps: undefined;
   Successfully: undefined;
   PaymentMethod: undefined;
+  ResetPassword:undefined
 };
 
 const Stack = createNativeStackNavigator<RootStackParams>();
 
 const RootStack: FC = () => {
   const userReducer = useSelector((state: any) => state.userReducer);
+ 
   const initialScreen = () => {
     if (userReducer?.isLogin) {
-      return 'bottomTabNav';
+      return 'HomeBottomTabs';
     } else {
-      return 'Login';
+      return 'Splash';
     }
   };
   return (
     <Stack.Navigator
-      initialRouteName={'Splash'}
-      // initialRouteName={initialScreen()}
+       initialRouteName={initialScreen()}
       screenOptions={{
         headerShown: false,
       }}>
@@ -67,6 +68,8 @@ const RootStack: FC = () => {
       <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       <Stack.Screen name="VerifyOtp" component={VerifyOtp} />
+      <Stack.Screen name="ResetPassword" component={ResetPassword} />
+
       {/* HomeBottomTabs screen */}
       <Stack.Screen name="HomeBottomTabs" component={HomeBottomTabs} />
       <Stack.Screen name="CleaningProceed" component={CleaningProceed} />
@@ -78,9 +81,10 @@ const RootStack: FC = () => {
       <Stack.Screen name="Ongoing" component={Ongoing} />
       <Stack.Screen name="CleaningApartment" component={CleaningApartment} />
       <Stack.Screen name="FeedBack" component={FeedBack} />
-      <Stack.Screen name="Maps" component={Maps} />
       <Stack.Screen name="Successfully" component={Successfully} />
       <Stack.Screen name="PaymentMethod" component={PaymentMethod} />
+      <Stack.Screen name="Maps" component={Maps} />
+
     </Stack.Navigator>
   );
 };

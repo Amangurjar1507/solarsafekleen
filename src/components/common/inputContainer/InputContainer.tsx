@@ -4,11 +4,9 @@ import styles from './inputContainer.style';
 import SvgIndex from '../../../assets/svgIndex';
 import color from '../../../theme/color';
 import imageIndex from '../../../assets/imageIndex';
-import font from '../../../theme/font';
-
+ 
 const InputContainer: FC<any> = ({
-  inputContainerStyle,
-  placeholder,
+   placeholder,
   error,
   onChangeText,
   value,

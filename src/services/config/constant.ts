@@ -1,5 +1,13 @@
 export default {
-  baseURL: `http://194.233.77.156:3036/api/`,
-  login:"ii0i",
-  signUp:"098y7"
- };
+  baseURL: 'http://192.168.85.221:8000/',
+  signUp: 'auth/sign',
+  login: 'auth/login',
+  forgotPassword: 'auth/forgot-password',
+  profileupdate:"profile/update-user",
+  getUserData:"getUserData",
+  verifyOtp:"auth/verify-otp",
+  resetPassword:"auth/reset-password",
+  userGet:"profile/get-profile"
+};
+ 
+  

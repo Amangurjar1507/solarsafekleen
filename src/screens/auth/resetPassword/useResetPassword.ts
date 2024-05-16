@@ -1,19 +1,21 @@
 import {useEffect, useRef, useState} from 'react';
 import {useAuthNavigation} from '../../../hooks/useAppNavigation';
 import validationMessage from '../../../validation/validationMessage';
-import {checkEmail} from '../../../validation/stringValidation';
 import {Animated} from 'react-native';
 import {ToastMessage} from '../../../utility/ToastMessage';
 import color from '../../../theme/color';
 import axiosInstance from '../../../services/api';
 import constant from '../../../services/config/constant';
 import params from '../../../services/config/params';
-const useForgotPassword = () => {
+
+const useResetPassword = () => {
   const navigation = useAuthNavigation();
-  const [email, setEmail] = useState<string>();
+  const [password, setPassword] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+  const [confirmpassword, setConfirmpassword] = useState<string>('');
   const [errorObject, setErrorObject] = useState<any>({
-    emailError: undefined,
+    passwordError: undefined,
+    confirmError: undefined,
   });
 
   const buttonOpacity = useRef(new Animated.Value(0)).current;
@@ -34,19 +36,28 @@ const useForgotPassword = () => {
       useNativeDriver: true,
     }).start();
   }, []);
-
+  // Call  all validations pass
   const validateForgot = () => {
     let isValidate = true;
-    if (!email) {
+    const updatedErrorObject = {...errorObject}; // Create a copy of errorObject to avoid mutating it directly
+
+    if (!password) {
       isValidate = false;
-      errorObject.emailError = validationMessage.emptyEmail;
-    } else if (!checkEmail(email)) {
-      isValidate = false;
-      errorObject.emailError = validationMessage.invalidEmail;
+      updatedErrorObject.passwordError = validationMessage.emptyPassword;
     } else {
-      errorObject.emailError = undefined;
+      updatedErrorObject.passwordError = undefined; // Clear any previous password error
     }
-    setErrorObject({...errorObject});
+
+    if (!confirmpassword) {
+      isValidate = false;
+      updatedErrorObject.confirmError = validationMessage.emptyConfirmPassword;
+    } else if (password !== confirmpassword) {
+      isValidate = false;
+      updatedErrorObject.confirmError = validationMessage.passwordMismatch;
+    } else {
+      updatedErrorObject.confirmError = undefined; // Clear any previous confirm password error
+    }
+    setErrorObject(updatedErrorObject); // Update errorObject with the new error messages
     if (isValidate) {
       userForgotApi(); // Call the API only if all validations pass
     }
@@ -55,21 +66,23 @@ const useForgotPassword = () => {
   const userForgotApi = () => {
     setLoading(true);
     let data = {
-      [params.email]: email,
+      [params.password]: password,
     };
     axiosInstance
-      .post(constant.forgotPassword, data)
+      .post(constant.resetPassword, data)
       .then(response => {
         ToastMessage(response?.data?.message, color.green);
         setLoading(false);
-        setEmail('');
-        navigation.navigate('VerifyOtp', {
-          email: email,
+        setPassword('');
+        navigation.reset({
+          index: 0,
+          routes: [{name: 'Login'}],
         });
       })
       .catch((err: any) => {
         setLoading(false);
-        setEmail('');
+        setPassword('');
+
         if (
           err?.response &&
           err?.response?.data &&
@@ -86,15 +99,17 @@ const useForgotPassword = () => {
   };
 
   return {
-    email,
+    password,
     errorObject,
-    setEmail,
+    setPassword,
     loading,
     setLoading,
     validateForgot,
     buttonOpacity,
     inputTranslateY,
+    confirmpassword,
+    setConfirmpassword,
   };
 };
 
-export default useForgotPassword;
+export default useResetPassword;

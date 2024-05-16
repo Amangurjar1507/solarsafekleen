@@ -4,9 +4,10 @@ import font from '../../../theme/font';
 
 const styles = StyleSheet.create({
   container: {
-    height:"100%",
-    width:"100%"
-   },
+    height: '100%',
+    width: '100%',
+    backgroundColor:color.primaryText
+  },
   headingText: {
     marginTop: 50,
     fontSize: 24,
@@ -72,6 +73,9 @@ const styles = StyleSheet.create({
   },
   row: {
     marginHorizontal: 21,
+  },
+  keyboardView: {
+    flex: 1,
   },
 });
 

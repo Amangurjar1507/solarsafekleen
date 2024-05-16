@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
   mainRow: {
     marginHorizontal: 20,
   },
-
   cardView: {
     flexDirection: 'row',
     paddingVertical: 12,
@@ -37,7 +36,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontFamily: font.PoppinsMedium,
   },
-
   buttAcc: {
     padding: 6,
     borderRadius: 8,
@@ -50,19 +48,16 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     lineHeight: 20,
   },
-
   titleView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     flex: 1,
   },
-
   title: {
     color: color.black,
     fontSize: 14,
     fontFamily: font.PoppinsBold,
   },
-
   confirmation: {
     fontSize: 20,
     color: color.black,
@@ -93,7 +88,7 @@ const styles = StyleSheet.create({
     color: color.backGray,
     fontSize: 14,
     fontFamily: font.PoppinsMedium,
-    marginLeft:2
+    marginLeft: 2,
   },
   cardRed: {
     padding: 10,
@@ -152,19 +147,27 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderColor: color.label,
   },
-  totalSub:{
+  totalSub: {
     color: color.black,
     fontSize: 16,
     fontFamily: font.PoppinsSemiBold,
     marginTop: 10,
-
   },
-  containerStyle:{
-     marginTop: 20,
+  containerStyle: {
+    marginTop: 20,
     borderWidth: 1,
     borderColor: color.butt,
-    marginBottom:20
-  }
+    marginBottom: 20,
+  },
+  scrollViewstyle: {
+    flexGrow: 1,
+  },
+  nameTextStyle: {
+    color: color.butt,
+  },
+  lableStyle: {
+    color: color.black
+  },
 });
 
 export default styles;

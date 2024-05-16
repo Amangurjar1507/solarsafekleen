@@ -31,7 +31,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginHorizontal: 20,
   },
-  textView: {flexDirection: 'row', alignItems: 'center'},
+  textView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   prices: {
     fontSize: 19,
     color: color.green,

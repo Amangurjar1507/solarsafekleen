@@ -1,20 +1,19 @@
-import {Dimensions, StyleSheet} from 'react-native';
-
-const width = Dimensions.get('window').width;
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {
-    width: width,
-    marginTop: 12,
-    height: 397,
-    flexDirection: 'row',
-    paddingHorizontal: 20,
-    backgroundColor: 'green',
-  },
   itemContainer: {
     justifyContent: 'center',
-    //  marginHorizontal: 10,
-     margin:3
-    },
+    margin: 3,
+  },
+  img: {
+    height: 170,
+    width: 240,
+    borderWidth: 1,
+    borderRadius: 10,
+    margin: 1.5,
+  },
+  touchable: {
+    marginVertical: 20,
+  },
 });
 export default styles;

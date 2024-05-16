@@ -2,6 +2,7 @@ import React, {memo} from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import imageIndex from '../../../assets/imageIndex';
 import {styles} from './dashbordHeader.style';
+import color from '../../../theme/color';
 
 const DashbordHeader = ({}) => {
   return (
@@ -11,6 +12,7 @@ const DashbordHeader = ({}) => {
           style={styles.location}
           source={imageIndex.location}
           resizeMode="center"
+          tintColor={color.textGray}
         />
         <View style={styles.textView}>
           <Text style={styles.lableView}>Cureent Location</Text>

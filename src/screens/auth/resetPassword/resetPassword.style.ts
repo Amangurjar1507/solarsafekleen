@@ -4,9 +4,10 @@ import font from '../../../theme/font';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height:"100%",
+    width:"100%",
     backgroundColor:color.primaryText
-  },
+   },
   headingText: {
     marginTop: 50,
     fontSize: 24,
@@ -20,20 +21,48 @@ const styles = StyleSheet.create({
   inputContainer: {
     marginBottom: 10,
   },
+  forgotPassButton: {
+    alignItems: 'center',
+    marginTop: 26,
+  },
+  forgotPasswordLabel: {
+    fontSize: 16,
+    lineHeight: 22,
+    color: color.text,
+    textAlign: 'center',
+    fontFamily: font.PoppinsRegular,
+  },
+  btnContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: 20,
+  },
   contentContainer: {
     flexGrow: 1,
   },
   btnStyle: {
-    marginTop: 50,
+    marginTop: 40,
     alignSelf: 'center',
     backgroundColor: color.butt,
     width: '100%',
+  },
+  dontIfDont: {
+    fontSize: 16,
+    fontFamily: font.PoppinsRegular,
+    lineHeight: 22,
+    textAlign: 'center',
+    color: color.butt,
   },
   programDescription: {
     borderWidth: 0,
     backgroundColor: color.white,
     height: 200,
     alignItems: 'flex-start',
+  },
+  homeImageView: {
+    marginTop: 45,
+    marginHorizontal: 20,
+    justifyContent: 'flex-end',
   },
   mainViewModal: {
     flex: 1,

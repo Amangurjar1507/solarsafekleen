@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   mapStyle: {
-    height: 400,
+    height: 300,
   },
   bottomview: {
     flex: 0.5,
@@ -21,7 +21,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 5,
-  
   },
   border: {
     borderRadius: 5,

@@ -93,9 +93,10 @@ const styles = StyleSheet.create({
   },
   containerStyle:{ 
     height: 38,
-    borderColor: 'red',
+    borderColor:color.red,
     borderWidth: 1,
     marginBottom: 12,
+    width:'100%'
   }
 });
 export default styles;

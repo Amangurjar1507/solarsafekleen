@@ -19,8 +19,8 @@ import {UserProfileList} from './constData';
 import useUserProfile from './useUserProfile';
 
 const UserProfile = () => {
-  const {onEdit,onLogOut, modal, onNavigation, setModal} = useUserProfile();
-
+  const {onEdit, userData, onLogOut, modal, onNavigation, setModal} =
+    useUserProfile();
   return (
     <View style={styles.container}>
       <CustomStatusbar
@@ -39,7 +39,9 @@ const UserProfile = () => {
               resizeMode="cover"
             />
             <Text style={styles.name}>Raghva Gurjar</Text>
-            <Text style={styles.gmailText}>RamGurjar1408@gmail.com</Text>
+            <Text style={styles.gmailText}>
+              {userData?.email}
+            </Text>
             <Button
               label="Edit Profile"
               onPress={onEdit}

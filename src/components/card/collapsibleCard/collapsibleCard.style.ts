@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: 14,
     lineHeight: 16,
-    color: 'grren',
+    color: color.green,
   },
   iconView: {
     height: 19,

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image, Text, ScrollView} from 'react-native';
+import {View, Image, Text, ScrollView, KeyboardAvoidingView, Platform} from 'react-native';
 import {
   Button,
   CustomStatusbar,
@@ -11,7 +11,17 @@ import imageIndex from '../../../../assets/imageIndex';
 import useEditProfile from './useEditProfile';
 
 const EditProfile = () => {
-  const {onGobak} = useEditProfile();
+  const {
+    onGobak,
+    validateEdit,
+    loading,
+    email,
+    setEmail,
+    setPassword,
+    setMobileNumber,
+    mobileNumber,
+    errorObject,
+  } = useEditProfile();
 
   return (
     <View style={styles.container}>
@@ -29,6 +39,9 @@ const EditProfile = () => {
           Save
         </Text>
       </View>
+      <KeyboardAvoidingView
+        style={styles.keyboardView}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}>
@@ -49,28 +62,48 @@ const EditProfile = () => {
           </View>
           <InputContainer placeholder="Alfredo Ross" labelSecond="Name" />
           <InputContainer
-            placeholder="akshaysyal@gmail.com"
+            placeholder={"Email"}
             labelSecond="Email Id"
             keyboardType="email-address"
             closeImage
+            onPressClose={() => {
+              setEmail('');
+            }}
+            value={email}
+            onChangeText={(text: string) => {
+              setEmail(text.trim());
+            }}
+            error={errorObject.emailError}
           />
           <InputContainer
-            placeholder="+91 9876543210"
+            placeholder={"Mobile Number"}
             labelSecond="Mobile Number"
             keyboardType="decimal-pad"
+            value={mobileNumber}
+            onChangeText={(text: string) => {
+              setMobileNumber(text.trim());
+            }}
+            maxLength={10}
+            error={errorObject.mobileNumberError}
           />
-          <InputContainer
+          {/* <InputContainer
             placeholder="********"
-            placeholderTextColor={'green'}
-            labelSecond="Bio"
-          />
+             labelSecond="Bio"
+             value={pass}
+
+            onChangeText={(text: string) => {
+              setMobileNumber(text.trim());
+            }}
+          /> */}
         </View>
       </ScrollView>
+      </KeyboardAvoidingView>
       <View style={styles.buttView}>
         <Button
           label="Save"
           containerStyle={styles.containerStyle}
-          onPress={onGobak}
+          onPress={validateEdit}
+          isLoading={loading}
         />
       </View>
     </View>

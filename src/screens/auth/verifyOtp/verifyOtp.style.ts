@@ -5,6 +5,7 @@ import font from '../../../theme/font';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor:color.primaryText
   },
   headingText: {
     marginTop: 50,
@@ -51,9 +52,9 @@ const styles = StyleSheet.create({
     height: 40,
     lineHeight: 26,
     fontSize: 24,
-    borderBottomWidth: 3,
+    borderBottomWidth: 1.3,
     borderBottomColor: color.lightWhite,
-    borderColor: '#F1F1F1',
+    borderColor: color.black,
     textAlign: 'center',
     fontFamily: font.ArchivoBlackRegular,
     marginTop: 10,
@@ -69,7 +70,6 @@ const styles = StyleSheet.create({
     borderColor: color.butt,
     fontFamily: font.ArchivoBlackRegular,
     color: color.black,
-    
   },
   otpText: {
     marginTop: 16,
@@ -78,6 +78,20 @@ const styles = StyleSheet.create({
     color: color.label,
     fontFamily: font.PoppinsRegular,
   },
+  emailText: {
+    marginTop: 16,
+    fontSize: 16,
+    lineHeight: 22,
+    color: color.black,
+    fontFamily: font.PoppinsRegular,
+  },
+  otpError:{
+    fontSize: 13,
+    lineHeight: 22,
+    marginTop: 15,
+    fontFamily: font.PoppinsMedium,
+    color: color.red,
+  }
 });
 
 export default styles;

@@ -8,33 +8,36 @@ import {
   View,
   Animated,
 } from 'react-native';
-import styles from './forgotPassword.style';
 import {
   Button,
   CustomStatusbar,
-  Header,
-  InputContainer,
+   InputContainer,
 } from '../../../components/componentsIndex';
 import imageIndex from '../../../assets/imageIndex';
-import useForgotPassword from './useForgotPassword';
+import useForgotPassword from './useResetPassword';
+import styles from './resetPassword.style';
+import SvgIndex from '../../../assets/svgIndex';
 
 export interface UserForgotProps {
   email: string;
   loading: boolean;
 }
 
-const ForgotPassword: FC = () => {
+const ResetPassword: FC = () => {
   const {
     errorObject,
     buttonOpacity,
     inputTranslateY,
-    email,
+    password,
     loading,
-    setEmail,
     validateForgot,
+    setPassword,
+    confirmpassword,
+    setConfirmpassword,
   } = useForgotPassword();
   return (
     <View style={styles.container}>
+
       <CustomStatusbar translucent={true} barStyle="light-content" />
       <KeyboardAvoidingView
         style={styles.container}
@@ -44,10 +47,12 @@ const ForgotPassword: FC = () => {
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
           contentContainerStyle={styles.contentContainer}>
-          <Header backIconsShown lable="Forgot Password" />
+          <View style={styles.homeImageView}>
+            <SvgIndex.homeLogo />
+          </View>
           <View style={styles.mainViewModal}>
             <View style={styles.row}>
-              <Text style={styles.headingText}>Forgot Password</Text>
+              <Text style={styles.headingText}>Reset Password</Text>
               <Animated.View
                 style={{
                   transform: [{translateY: inputTranslateY}],
@@ -55,12 +60,26 @@ const ForgotPassword: FC = () => {
                 }}>
                 <View style={styles.formContainer}>
                   <InputContainer
-                    placeholder="E-mail"
-                    labelSecond="E-mail"
-                    keyboardType="email-address"
-                    value={email}
-                    onChangeText={setEmail}
-                    error={errorObject.emailError}
+                    placeholder="Password"
+                    labelSecond="Password"
+                    value={password}
+                    onChangeText={(text: string) => {
+                      setPassword(text.trim());
+                    }}
+                    returnKeyType="Done"
+                    hideText={true}
+                    error={errorObject.passwordError}
+                  />
+                  <InputContainer
+                    placeholder="Confirm Password"
+                    labelSecond="Confirm Password"
+                    value={confirmpassword}
+                    onChangeText={(text: string) => {
+                      setConfirmpassword(text.trim());
+                    }}
+                    returnKeyType="Done"
+                    hideText={true}
+                    error={errorObject.confirmError}
                   />
                   <Button
                     label="Submit"
@@ -78,4 +97,4 @@ const ForgotPassword: FC = () => {
   );
 };
 
-export default ForgotPassword;
+export default ResetPassword;

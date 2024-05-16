@@ -6,9 +6,8 @@ const CancelToken = axios.CancelToken;
 const source = CancelToken.source();
 const axiosInstance = axios.create({
   baseURL: constant.baseURL,
-  // cancelToken: source.token,
-  headers: {
-    //'Content-Type': 'multipart/form-data',
+   headers: {
+    // 'Content-Type': 'multipart/form-data',
     // 'Cache-Control': 'no-cache',
     // Pragma: 'no-cache',
     // Expires: '0',

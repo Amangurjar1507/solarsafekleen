@@ -1,12 +1,12 @@
 import React, {FC} from 'react';
 import {
-  ImageBackground,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
   Text,
   TouchableOpacity,
   View,
+  Animated,
 } from 'react-native';
 import styles from './login.style';
 import useLogin from './useLogin';
@@ -16,10 +16,7 @@ import {
   InputContainer,
 } from '../../../components/componentsIndex';
 import SvgIndex from '../../../assets/svgIndex';
-import imageIndex from '../../../assets/imageIndex';
 import color from '../../../theme/color';
-
- 
 
 const Login: FC = () => {
   const {
@@ -27,25 +24,24 @@ const Login: FC = () => {
     setEmail,
     password,
     setPassword,
-     onClickSignUp,
+    onClickSignUp,
     onClickForgot,
     loading,
     validateLogin,
     errorObject,
+    inputTranslateY,
+    buttonOpacity,
   } = useLogin();
 
   return (
-    <ImageBackground
-      style={styles.container}
-      source={imageIndex.imageBackground}
-      resizeMode="cover">
+    <View style={styles.container}>
       <CustomStatusbar
         backgroundColor={color.transparent}
         translucent={true}
         barStyle="light-content"
       />
       <KeyboardAvoidingView
-        style={{flex: 1}}
+        style={styles.keyboardView}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <ScrollView
           bounces={false}
@@ -57,8 +53,17 @@ const Login: FC = () => {
           </View>
           <View style={styles.mainViewModal}>
             <View style={styles.row}>
-              <Text style={styles.headingText}>Log in</Text>
-              <View style={styles.formContainer}>
+              <Text style={styles.headingText} allowFontScaling={false}>
+                Log in
+              </Text>
+              <Animated.View
+                style={[
+                  styles.formContainer,
+                  {
+                    transform: [{translateY: inputTranslateY}],
+                    opacity: buttonOpacity,
+                  },
+                ]}>
                 <InputContainer
                   placeholder="E-mail"
                   labelSecond="E-mail"
@@ -103,20 +108,29 @@ const Login: FC = () => {
                     Forget Password ?
                   </Text>
                 </TouchableOpacity>
-              </View>
+              </Animated.View>
             </View>
             <View style={styles.btnContainer}>
-              <Text
-                style={styles.dontIfDont}
-                allowFontScaling={false}
-                onPress={onClickSignUp}>
-                Sign Up
-              </Text>
+              <Animated.View
+                style={[
+                  styles.formContainer,
+                  {
+                    transform: [{translateY: inputTranslateY}],
+                    opacity: buttonOpacity,
+                  },
+                ]}>
+                <Text
+                  style={styles.dontIfDont}
+                  allowFontScaling={false}
+                  onPress={onClickSignUp}>
+                  Sign Up
+                </Text>
+              </Animated.View>
             </View>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
-    </ImageBackground>
+    </View>
   );
 };
 

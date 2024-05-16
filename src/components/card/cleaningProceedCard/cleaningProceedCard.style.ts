@@ -45,7 +45,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 3,
   },
-  wallClock: {height: 12, width: 12},
+  wallClock: {
+    height: 12,
+    width: 12,
+  },
   addView: {
     alignItems: 'center',
     flexDirection: 'row',

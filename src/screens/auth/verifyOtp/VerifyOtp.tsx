@@ -14,31 +14,15 @@ import {
   CustomStatusbar,
   Header,
 } from '../../../components/componentsIndex';
-import imageIndex from '../../../assets/imageIndex';
 import useVerifyOtp from './useVerifyOtp';
 import {CodeField, Cursor} from 'react-native-confirmation-code-field';
 
-export interface UserVerifyProps {
-  otp: string;
-  loading: boolean;
-}
-
 const VerifyOtp: FC = () => {
-  const {
-    ref,
-    errorObject,
-    props,
-    validateVerify,
-    getCellOnLayoutHandler,
-    value,
-    setValue,
-    loading,
-  } = useVerifyOtp();
+  const {errorObject, route, OTPRef, validateVerify, otp, setOtp, loading} =
+    useVerifyOtp();
 
   return (
-    <ImageBackground
-      style={styles.container}
-      source={imageIndex.imageBackground}>
+    <View style={styles.container}>
       <CustomStatusbar translucent={true} barStyle="light-content" />
       <KeyboardAvoidingView
         style={styles.container}
@@ -55,21 +39,18 @@ const VerifyOtp: FC = () => {
               <Text style={styles.otpText}>
                 Enter your phone number and get OTP code from RightJoy
               </Text>
+              <Text style={styles.emailText}>{route?.params?.email}</Text>
               <View style={styles.formContainer}>
                 <CodeField
-                  ref={ref}
-                  {...props}
-                  value={value?.replace(/[-./,|]/g, '')}
-                  onChangeText={(res: any) => {
-                    setValue(res);
-                    res?.length === 6 && Keyboard.dismiss();
-                  }}
+                  ref={OTPRef}
+                  value={otp}
+                  onChangeText={(text: string) => setOtp(text)}
                   cellCount={6}
+                  keyboardType="decimal-pad"
+                  returnKeyType="done"
                   autoFocus
                   rootStyle={styles.codeFieldRoot}
-                  keyboardType="number-pad"
                   textContentType="oneTimeCode"
-                  returnKeyType="done"
                   onSubmitEditing={() => Keyboard.dismiss()}
                   autoComplete={Platform.select({
                     android: 'sms-otp',
@@ -79,26 +60,26 @@ const VerifyOtp: FC = () => {
                   renderCell={({index, symbol, isFocused}) => (
                     <Text
                       key={index}
-                      style={[styles.cell, isFocused && styles.focusCell]}
-                      onLayout={getCellOnLayoutHandler(index)}>
+                      style={[styles.cell, isFocused && styles.focusCell]}>
                       {symbol || (isFocused ? <Cursor /> : null)}
                     </Text>
                   )}
                 />
                 {errorObject.otpError && (
-                  <Text style={{color: 'red'}}>{errorObject.otpError}</Text>
+                  <Text style={styles.otpError}>{errorObject.otpError}</Text>
                 )}
                 <Button
                   label="Submit"
                   containerStyle={styles.btnStyle}
                   onPress={validateVerify}
+                  isLoading={loading}
                 />
               </View>
             </View>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
-    </ImageBackground>
+    </View>
   );
 };
 

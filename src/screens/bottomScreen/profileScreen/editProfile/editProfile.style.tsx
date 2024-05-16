@@ -64,6 +64,10 @@ const styles = StyleSheet.create({
   containerStyle: {
     width: '100%',
     backgroundColor: color.butt,
+    marginTop: 12,
+  },
+  keyboardView: {
+    flex: 1,
   },
 });
 

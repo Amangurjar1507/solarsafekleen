@@ -1,53 +1,82 @@
-import {useState} from 'react';
-import {useAuthNavigation} from '../../../hooks/useAppNavigation';
-import {
-  useBlurOnFulfill,
-  useClearByFocusCell,
-} from 'react-native-confirmation-code-field';
+import {useRef, useState} from 'react';
+import {useAuthNavigation, useAuthRoute} from '../../../hooks/useAppNavigation';
 import validationMessage from '../../../validation/validationMessage';
+import {ToastMessage} from '../../../utility/ToastMessage';
+import color from '../../../theme/color';
+import axiosInstance from '../../../services/api';
+import params from '../../../services/config/params';
+import constant from '../../../services/config/constant';
 
 const useForgotPassword = () => {
   const navigation = useAuthNavigation();
-  const [otpNumber, setOtpNumber] = useState<any>('');
-  const [value, setValue] = useState('');
-  const ref = useBlurOnFulfill({value, cellCount: 6});
-  const [props, getCellOnLayoutHandler] = useClearByFocusCell({
-    value,
-    setValue,
-  });
+  const OTPRef = useRef<any>(null);
+  const route = useAuthRoute('VerifyOTP');
+  const [otp, setOtp] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [errorObject, setErrorObject] = useState<any>({
     otpError: undefined,
   });
-
   const validateVerify = () => {
-     let isValid = true;
-    if (!value) {
+    let isValid = true;
+    const errorObjectCopy = {...errorObject};
+    if (!otp) {
       isValid = false;
-      errorObject.otpError = validationMessage.emptyOtp;
-    } else if (value?.length != 6) {
-      errorObject.otpError = validationMessage.invalidOtp;
+      errorObjectCopy.otpError = validationMessage.emptyOtp;
+    } else if (otp.length !== 6) {
+      isValid = false;
+      errorObjectCopy.otpError = validationMessage.invalidOtp;
     } else {
-      errorObject.otpError = undefined;
+      errorObjectCopy.otpError = undefined;
     }
-    setErrorObject({...errorObject});
+    setErrorObject(errorObjectCopy);
     if (isValid) {
-      navigation.navigate('Login');
-      // loginApi();
+      userForgotApi();
     }
   };
 
+  const userForgotApi = () => {
+     setLoading(true);
+    let data = {
+      [params.otp]: otp,
+    };
+    axiosInstance
+      .post(constant.verifyOtp, data)
+      .then(response => {
+        ToastMessage(response?.data?.message, color.green);
+        setLoading(false);
+        setOtp("")
+        navigation.reset({
+          index: 0,
+          routes: [{name: 'ResetPassword'}],
+        });
+      })
+      .catch((err: any) => {
+        setLoading(false);
+        setOtp("")
+
+        if (
+          err?.response &&
+          err?.response?.data &&
+          err?.response?.data?.error
+        ) {
+          ToastMessage(err?.response?.data?.error, color.warning);
+        } else {
+          ToastMessage(
+            'An error occurred. Please try again later.',
+            color.warning,
+          );
+        }
+      });
+  };
+
   return {
-    ref,
+    otp,
     validateVerify,
-    props,
-    getCellOnLayoutHandler,
-    setOtpNumber,
-    otpNumber,
-    value,
-    setValue,
+    setOtp,
+    OTPRef,
     loading,
     errorObject,
+    route,
   };
 };
 

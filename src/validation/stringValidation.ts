@@ -12,6 +12,7 @@ const StringValidation = (string: string) => {
   }
   return validate;
 };
+
 const checkEmail = (value: string) => {
   const condition = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
   return condition.test(value);

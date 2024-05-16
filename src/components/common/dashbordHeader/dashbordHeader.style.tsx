@@ -12,20 +12,20 @@ export const styles = StyleSheet.create({
   },
   lableView: {
     color: color.label,
-    fontSize: 15,
+    fontSize: 14,
     fontFamily: font.PoppinsRegular,
-   },
+    },
   rowView: {
     flexDirection: 'row',
   },
   lableStyle: {
     color: color.black,
-    fontSize: 15,
-    fontFamily: font.PoppinsMedium,
+    fontSize: 14,
+    fontFamily: font.PoppinsBold,
    },
   imageStyle: {
-    height: 20,
-    width: 20,
+    height: 18,
+    width: 18,
     resizeMode: 'cover',
   },
   imageView: {
@@ -38,14 +38,14 @@ export const styles = StyleSheet.create({
     width: 23,
   },
   textView: {
-    marginLeft: 13,
+    marginLeft: 6,
   },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   location: {
-    height: 18,
-    width: 18,
+    height: 20,
+    width: 20,
   },
 });
