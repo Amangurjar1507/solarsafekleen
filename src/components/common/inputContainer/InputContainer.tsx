@@ -61,7 +61,7 @@ const InputContainer: FC<any> = ({
         />
         {closeImage && (
           <TouchableOpacity
-            style={{right: 12}}
+            style={styles.closeView}
             activeOpacity={0.8}
             onPress={onPressClose}>
             <SvgIndex.close />

@@ -2,8 +2,7 @@
 import {StatusBar, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {CustomStatusBarProps} from './customStatusbarProps';
-import color from '../../../theme/color';
-
+ 
 const CustomStatusBar: FC<CustomStatusBarProps> = ({
   containerStyle,
   backgroundColor,

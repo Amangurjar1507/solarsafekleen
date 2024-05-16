@@ -22,9 +22,8 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 13,
     lineHeight: 17,
-    // marginLeft: 10,
     fontWeight: '400',
-    color:"black"
+    color: 'black',
   },
   filterView: {
     height: 42,
@@ -42,6 +41,13 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  imgSearchView: {
+    marginRight: 10,
+  },
+  seachImg: {
+    height: 22,
+    width: 22,
   },
 });
 

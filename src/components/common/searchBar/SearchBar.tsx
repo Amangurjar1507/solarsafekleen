@@ -63,11 +63,11 @@ const SearchBar: FC<SearchBarProps> = ({
     <View style={[styles.container, containerStyle]}>
       <View style={[styles.searchView, searchView]}>
         {props?.searchIcon && (
-          <View style={{marginRight: 10}}>
+          <View style={styles.imgSearchView}>
             <Image
               resizeMode="contain"
               source={imageIndex.search}
-              style={{height: 22, width: 22}}
+              style={styles.seachImg}
             />
           </View>
         )}

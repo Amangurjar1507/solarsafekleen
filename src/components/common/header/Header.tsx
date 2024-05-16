@@ -76,7 +76,4 @@ const Header: FC<HeaderProps> = ({
 };
 
 export default memo(Header);
-Header.defaultProps = {
-  backIconsShown: false,
-  rightButtonText: '',
-};
+ 

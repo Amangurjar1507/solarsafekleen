@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     marginTop: 8,
     fontFamily: font.PoppinsMedium,
-    color:color.red
+    color: color.red,
   },
   labelSecond: {
     color: color.label,
@@ -43,6 +43,9 @@ const styles = StyleSheet.create({
     height: 24,
     width: 24,
     right: 12,
+  },
+  closeView: {
+    right: 12
   },
 });
 export default styles;
