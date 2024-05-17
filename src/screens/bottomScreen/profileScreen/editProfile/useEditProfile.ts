@@ -11,6 +11,8 @@ import {
   checkMobileNumber,
 } from '../../../../validation/stringValidation';
 import validationMessage from '../../../../validation/validationMessage';
+import ImagePicker from 'react-native-image-crop-picker';
+import { PermissionsAndroid } from 'react-native';
 
 const useEditProfile = () => {
   const navigation = useAuthNavigation();
@@ -19,11 +21,37 @@ const useEditProfile = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [mobileNumber, setMobileNumber] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [showImage, setShowImage] = useState<string>('');
+  const [modalVisible, setModalVisible] = useState(false);
+
   useEffect(() => {
     setEmail(userData?.email);
     setMobileNumber(userData?.mobileNumber);
   }, []);
 
+
+  useEffect(() => {
+    const requestPermission = async () => {
+      try {
+        const cameraPermission = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.CAMERA,
+        );
+        const galleryPermission = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES,
+        );
+        if (
+          cameraPermission === PermissionsAndroid.RESULTS.GRANTED &&
+          galleryPermission === PermissionsAndroid.RESULTS.GRANTED
+        ) {
+        } else {
+          console.log('Camera or gallery permission denied');
+        }
+      } catch (error) {
+        console.error('Error requesting permission:', error);
+      }
+      requestPermission();
+    };
+  }, []);
   const onGobak = useCallback(() => {
     navigation.goBack();
   }, [navigation]);
@@ -32,6 +60,38 @@ const useEditProfile = () => {
     mobileNumberError: undefined,
     passwordError: undefined,
   });
+
+  const uploadImage = () => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true,
+    })
+      .then((image: any) => {
+        setShowImage(image?.path);
+        setModalVisible(false);
+
+      })
+      .catch(e => {
+        setModalVisible(!modalVisible);
+      });
+  };
+
+  const SelectCamera = () => {
+    ImagePicker.openCamera({
+      width: 300,
+      height: 400,
+      cropping: true,
+    })
+      .then((image: any) => {
+        setModalVisible(false);
+        setShowImage(image?.path);
+
+      })
+      .catch(e => {
+        setModalVisible(!modalVisible);
+      });
+  };
   const validateEdit = () => {
     let isValidate = true;
     if (!email) {
@@ -108,6 +168,11 @@ const useEditProfile = () => {
     loading,
     errorObject,
     setErrorObject,
+    uploadImage,
+    modalVisible,
+    setModalVisible,
+    SelectCamera,
+    showImage
   };
 };
 export default useEditProfile;

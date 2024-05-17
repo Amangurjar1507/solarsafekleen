@@ -1,5 +1,5 @@
 export default {
-  baseURL: 'http://192.168.85.221:8000/',
+  baseURL: 'http://192.168.90.221:8000/',
   signUp: 'auth/sign',
   login: 'auth/login',
   forgotPassword: 'auth/forgot-password',

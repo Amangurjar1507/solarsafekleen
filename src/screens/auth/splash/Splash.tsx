@@ -13,9 +13,9 @@ const Splash: FC = () => {
 
   return (
     <ImageBackground
-      source={{uri:"https://img.freepik.com/premium-photo/stand-alone-solar-panel-system-installation-renewable-green-energy_10069-5651.jpg?w=360"}}
+      source={imageIndex.imageBackground}
       style={styles.container}
-      resizeMode="stretch">
+      resizeMode="cover">
       <CustomStatusbar
         backgroundColor={color.transparent}
         translucent={true}

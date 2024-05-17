@@ -1,7 +1,6 @@
 import React, {FC} from 'react';
 import {
-  ImageBackground,
-  KeyboardAvoidingView,
+   KeyboardAvoidingView,
   Platform,
   ScrollView,
   Text,
@@ -14,8 +13,7 @@ import {
   InputContainer,
 } from '../../../components/componentsIndex';
 import SvgIndex from '../../../assets/svgIndex';
-import imageIndex from '../../../assets/imageIndex';
-import useSignUp from './useSignUp';
+ import useSignUp from './useSignUp';
 import styles from './signUp.style';
 import color from '../../../theme/color';
 
@@ -38,7 +36,6 @@ const SignUp: FC = () => {
  
   return (
     <View style={styles.container}>
-
       <CustomStatusbar
         backgroundColor={color.transparent}
         translucent={true}

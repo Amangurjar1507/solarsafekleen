@@ -1,6 +1,5 @@
 import React, {FC} from 'react';
 import {
-  ImageBackground,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
@@ -13,8 +12,7 @@ import {
   CustomStatusbar,
    InputContainer,
 } from '../../../components/componentsIndex';
-import imageIndex from '../../../assets/imageIndex';
-import useForgotPassword from './useResetPassword';
+ import useForgotPassword from './useResetPassword';
 import styles from './resetPassword.style';
 import SvgIndex from '../../../assets/svgIndex';
 
@@ -37,7 +35,6 @@ const ResetPassword: FC = () => {
   } = useForgotPassword();
   return (
     <View style={styles.container}>
-
       <CustomStatusbar translucent={true} barStyle="light-content" />
       <KeyboardAvoidingView
         style={styles.container}

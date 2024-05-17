@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 import color from '../../../../theme/color';
 import font from '../../../../theme/font';
+import {getActionFromState} from '@react-navigation/native';
 
 const styles = StyleSheet.create({
   container: {
@@ -63,11 +64,63 @@ const styles = StyleSheet.create({
   },
   containerStyle: {
     width: '100%',
-    backgroundColor: color.butt,
+    backgroundColor: color.white,
     marginTop: 12,
   },
   keyboardView: {
     flex: 1,
+  },
+  modalView: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    backgroundColor: color.transparent,
+  },
+  mainModal: {
+    alignItems: 'center',
+    paddingVertical: 10,
+    marginHorizontal: 15,
+  },
+  borderWidth: {
+    borderRadius: 5,
+    borderWidth: 2,
+    height: 1,
+    width: 30,
+    borderColor: color.label,
+    marginTop: 2,
+  },
+  chooseText: {
+    fontSize: 18,
+    color: color.black,
+    textAlign: 'center',
+    fontFamily: font.PoppinsSemiBold,
+  },
+  galleryView: {
+    height: 45,
+    backgroundColor: color.white,
+    borderColor: color.backGray,
+    alignItems: 'center',
+    marginHorizontal: 25,
+    width: '100%',
+    justifyContent: 'center',
+    borderBottomEndRadius: 12,
+    borderBottomStartRadius: 12,
+  },
+  camera: {
+    height: 45,
+    borderBottomWidth: 0.5,
+    borderColor: color.lightBlue,
+    alignItems: 'center',
+    marginHorizontal: 20,
+    width: '100%',
+    justifyContent: 'center',
+    backgroundColor: color.white,
+    borderTopEndRadius: 10,
+    borderTopStartRadius: 10,
+  },
+  saveContainerStyle: {
+    width: '100%',
+    backgroundColor: color.butt,
+    marginTop: 12,
   },
 });
 
