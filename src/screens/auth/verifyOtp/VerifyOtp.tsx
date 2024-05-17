@@ -1,7 +1,6 @@
 import React, {FC} from 'react';
 import {
-  ImageBackground,
-  Keyboard,
+   Keyboard,
   KeyboardAvoidingView,
   Platform,
   ScrollView,

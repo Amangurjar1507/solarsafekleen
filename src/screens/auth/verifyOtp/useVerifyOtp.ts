@@ -30,12 +30,12 @@ const useForgotPassword = () => {
     }
     setErrorObject(errorObjectCopy);
     if (isValid) {
-      userForgotApi();
+      userForgotApi(); // Call the API only if all validations pass
     }
   };
 
   const userForgotApi = () => {
-     setLoading(true);
+    setLoading(true);
     let data = {
       [params.otp]: otp,
     };
@@ -44,7 +44,7 @@ const useForgotPassword = () => {
       .then(response => {
         ToastMessage(response?.data?.message, color.green);
         setLoading(false);
-        setOtp("")
+        setOtp('');
         navigation.reset({
           index: 0,
           routes: [{name: 'ResetPassword'}],
@@ -52,7 +52,7 @@ const useForgotPassword = () => {
       })
       .catch((err: any) => {
         setLoading(false);
-        setOtp("")
+        setOtp('');
 
         if (
           err?.response &&

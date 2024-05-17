@@ -118,8 +118,7 @@ const useSignUp = () => {
     setEmail('');
   }, [navigation]);
 
-  //** Validate create account */
-
+ 
   return {
     email,
     setEmail,

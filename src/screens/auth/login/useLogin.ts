@@ -37,10 +37,10 @@ const useLogin = () => {
       toValue: 0,
       duration: 800,
       useNativeDriver: true,
-      
     }).start();
   }, []);
 
+  //** Navigate to HomeBottomTabs screen */
   const onLogin = useCallback(() => {
     navigation.navigate('HomeBottomTabs');
   }, [navigation]);
@@ -102,10 +102,13 @@ const useLogin = () => {
         }
       });
   };
+
+  //** Navigate to SignUp screen */
   const onClickSignUp = useCallback(() => {
     navigation.navigate('SignUp');
   }, [navigation]);
 
+  //** Navigate to ForgotPassword screen */
   const onClickForgot = useCallback(() => {
     navigation.navigate('ForgotPassword');
   }, [navigation]);

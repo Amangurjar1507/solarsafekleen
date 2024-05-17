@@ -15,8 +15,7 @@ import {
   Header,
   InputContainer,
 } from '../../../components/componentsIndex';
-import imageIndex from '../../../assets/imageIndex';
-import useForgotPassword from './useForgotPassword';
+ import useForgotPassword from './useForgotPassword';
 
 export interface UserForgotProps {
   email: string;

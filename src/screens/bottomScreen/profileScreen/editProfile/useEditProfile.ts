@@ -70,7 +70,6 @@ const useEditProfile = () => {
       .then((image: any) => {
         setShowImage(image?.path);
         setModalVisible(false);
-
       })
       .catch(e => {
         setModalVisible(!modalVisible);
@@ -92,7 +91,8 @@ const useEditProfile = () => {
         setModalVisible(!modalVisible);
       });
   };
-  const validateEdit = () => {
+  // all validations pass
+  const validateEdit = () => { 
     let isValidate = true;
     if (!email) {
       isValidate = false;
@@ -120,7 +120,7 @@ const useEditProfile = () => {
     }
     setErrorObject({...errorObject});
     if (isValidate) {
-      onEditProfile(); // loginApiCall();
+      onEditProfile(); // onEditProfileCall();
     }
   };
 
