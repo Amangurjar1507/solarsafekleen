@@ -72,7 +72,9 @@ const useSignUp = () => {
     }
     setErrorObject({...errorObject});
     if (isValidate) {
-      onSignUpApi();// Call the API only if all validations pass
+      navigation.navigate('Login');
+
+      // onSignUpApi();// Call the API only if all validations pass
     }
   };
 
@@ -90,6 +92,7 @@ const useSignUp = () => {
         setLoading(false);
         setPassword('');
         setEmail('');
+        setMobileNumber("")
         ToastMessage(response?.data?.message, color.green);
         navigation.navigate('Login');
       })

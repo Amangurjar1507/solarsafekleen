@@ -12,7 +12,8 @@ const Splash: FC = () => {
   const {onClickSignUp, onClickLogin} = useSplash();
 
   return (
-    <ImageBackground
+    
+    < ImageBackground
       source={imageIndex.imageBackground}
       style={styles.container}
       resizeMode="stretch">
