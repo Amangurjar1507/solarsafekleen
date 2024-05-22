@@ -48,7 +48,8 @@ const useForgotPassword = () => {
     }
     setErrorObject({...errorObject});
     if (isValidate) {
-      userForgotApi(); // Call the API only if all validations pass
+      navigation.navigate('VerifyOtp');
+      // userForgotApi(); // Call the API only if all validations pass
     }
   };
 

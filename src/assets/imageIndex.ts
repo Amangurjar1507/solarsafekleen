@@ -1,6 +1,6 @@
 export default {
   bodiFyLogo: require('./image/bodiFyLogo.png'),
-  imageBackground: require('./image/imageBackground.jpg'),
+  imageBackground: require('./image/imageBackground.jpeg'),
   location: require('./image/location.png'),
   notification: require('./image/notification.png'),
   downArrow: require('./image/downArrow.png'),

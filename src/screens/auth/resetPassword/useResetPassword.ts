@@ -59,7 +59,11 @@ const useResetPassword = () => {
     }
     setErrorObject(updatedErrorObject); // Update errorObject with the new error messages
     if (isValidate) {
-      userForgotApi(); // Call the API only if all validations pass
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'Login'}],
+      });
+      // userForgotApi(); // Call the API only if all validations pass
     }
   };
 

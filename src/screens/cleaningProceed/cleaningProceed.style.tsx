@@ -18,16 +18,16 @@ const styles = StyleSheet.create({
   },
   cardView: {
     backgroundColor: color.white,
-    paddingVertical: 6,
+    paddingVertical: 5,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderWidth: 0.8,
+    borderWidth: 0.6,
     borderColor: color.label,
   },
   rowView: {
     backgroundColor: color.white,
-    paddingVertical: 18,
+    paddingVertical: 12,
     flexDirection: 'row',
     marginHorizontal: 20,
   },
@@ -38,8 +38,7 @@ const styles = StyleSheet.create({
   prices: {
     fontSize: 19,
     color: color.green,
-    lineHeight: 20,
-    fontFamily: font.PoppinsSemiBold,
+     fontFamily: font.PoppinsSemiBold,
   },
   item: {
     color: color.backGray,

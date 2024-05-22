@@ -30,7 +30,11 @@ const useForgotPassword = () => {
     }
     setErrorObject(errorObjectCopy);
     if (isValid) {
-      userForgotApi(); // Call the API only if all validations pass
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'ResetPassword'}],
+      });
+      // userForgotApi(); // Call the API only if all validations pass
     }
   };
 

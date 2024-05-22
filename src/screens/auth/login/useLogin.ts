@@ -1,9 +1,8 @@
-import {useCallback, useEffect, useRef, useState} from 'react';
+import {useCallback, useState} from 'react';
 import {useAuthNavigation} from '../../../hooks/useAppNavigation';
 import validationMessage from '../../../validation/validationMessage';
 import {checkEmail} from '../../../validation/stringValidation';
 import axiosInstance from '../../../services/api';
-import {Animated} from 'react-native';
 import constant from '../../../services/config/constant';
 import {useDispatch} from 'react-redux';
 import {loginSuccess} from '../../../services/config/redux/userReducer/reducer';
@@ -21,25 +20,6 @@ const useLogin = () => {
     emailError: undefined,
     passwordError: undefined,
   });
-
-  const buttonOpacity = useRef(new Animated.Value(0)).current;
-  const inputTranslateY = useRef(new Animated.Value(100)).current;
-
-  useEffect(() => {
-    // Button animation
-    Animated.timing(buttonOpacity, {
-      toValue: 1,
-      duration: 1000,
-      useNativeDriver: true,
-    }).start();
-    // Input fields animation
-    Animated.timing(inputTranslateY, {
-      toValue: 0,
-      duration: 800,
-      useNativeDriver: true,
-    }).start();
-  }, []);
-
   //** Navigate to HomeBottomTabs screen */
   const onLogin = useCallback(() => {
     navigation.navigate('HomeBottomTabs');
@@ -64,7 +44,11 @@ const useLogin = () => {
     }
     setErrorObject({...errorObject}); // Update errorObject with the new error messages
     if (isValid) {
-      uerLoginApi(); // Call the API only if all validations pass
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'HomeBottomTabs'}],
+      });
+      // uerLoginApi(); // Call the API only if all validations pass
     }
   };
 
@@ -125,8 +109,6 @@ const useLogin = () => {
     validateLogin,
     errorObject,
     setErrorObject,
-    buttonOpacity,
-    inputTranslateY,
   };
 };
 

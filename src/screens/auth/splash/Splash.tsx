@@ -1,12 +1,12 @@
 import React, {FC} from 'react';
 import {ImageBackground, Text, View} from 'react-native';
+import * as Animatable from 'react-native-animatable';
 import styles from './splash.style';
 import {Button, CustomStatusbar} from '../../../components/componentsIndex';
 import useSplash from './useSplash';
 import imageIndex from '../../../assets/imageIndex';
 import SvgIndex from '../../../assets/svgIndex';
 import color from '../../../theme/color';
-
 
 const Splash: FC = () => {
   const {onClickSignUp, onClickLogin} = useSplash();
@@ -15,20 +15,32 @@ const Splash: FC = () => {
     <ImageBackground
       source={imageIndex.imageBackground}
       style={styles.container}
-      resizeMode="cover">
+      resizeMode="stretch">
       <CustomStatusbar
         backgroundColor={color.transparent}
         translucent={true}
         barStyle="light-content"
       />
-      <View style={styles.mainContainer}>
-        <View style={styles.textView}>
+      <Animatable.View 
+        animation="fadeInDown"
+        duration={3000}
+        style={styles.mainContainer}
+      >
+        <Animatable.View 
+          animation="bounceIn"
+          duration={2000}
+          style={styles.textView}
+        >
           <SvgIndex.homeLogo />
           <Text style={styles.servicesText}>
             All services on your Fingertips.
           </Text>
-        </View>
-        <View style={styles.contentContainer}>
+        </Animatable.View>
+        <Animatable.View 
+          animation="fadeInUp"
+          duration={1500}
+          style={styles.contentContainer}
+        >
           <Button
             label="Log In"
             onPress={onClickLogin}
@@ -39,11 +51,10 @@ const Splash: FC = () => {
             onPress={onClickSignUp}
             containerStyle={styles.containerStyle}
           />
-        </View>
-      </View>
+        </Animatable.View>
+      </Animatable.View>
     </ImageBackground>
   );
 };
 
 export default Splash;
- 
