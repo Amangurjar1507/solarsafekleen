@@ -59,8 +59,6 @@ const Button: FC<ButtonProps> = ({
         ) : (
           <Text style={[style.nameStyle, nameTextStyle]}>{label}</Text>
         )}
-        {/* <View style={style.iconView}> */}
-        {/* </View> */}
       </TouchableOpacity>
     </View>
   );
