@@ -5,7 +5,6 @@ import {logoutSuccess} from '../../../../services/config/redux/userReducer/reduc
 
 const useUserProfile = () => {
   const dispatch = useDispatch();
-
   const navigation = useAuthNavigation();
   const [modal, setModal] = useState(false);
   const {userData, token} = useSelector((state: any) => state.userReducer);
