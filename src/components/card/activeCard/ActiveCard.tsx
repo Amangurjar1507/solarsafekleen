@@ -13,8 +13,7 @@ import color from '../../../theme/color';
 
 interface ActiveCardCardProps {
   item: ItemProps;
-  key: number;
-  onAccepted?: any;
+   onAccepted?: any;
   nameStyle?: StyleProp<TextStyle> | undefined;
 }
 interface ItemProps {
@@ -22,9 +21,8 @@ interface ItemProps {
   type: string;
 }
 
-const ActiveCard: FC<ActiveCardCardProps> = ({item, key, onAccepted}) => {
-  console.log(item.type);
-  return (
+const ActiveCard: FC<ActiveCardCardProps> = ({item, onAccepted}) => {
+   return (
     <View style={styles.mainView}>
       <View style={styles.itemContainer}>
         <View style={styles.buttView}>

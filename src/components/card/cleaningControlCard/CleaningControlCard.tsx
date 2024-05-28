@@ -13,7 +13,7 @@ import color from '../../../theme/color';
 
 interface ClearCardProps {
   item: ItemProps;
-  key: number;
+  index: number;
   onUserCleaningClick?: () => void;
   nameStyle?: StyleProp<TextStyle> | undefined;
 }
@@ -26,7 +26,7 @@ interface ItemProps {
 
 const CleaningControlCard: FC<ClearCardProps> = ({
   item,
-  key,
+  index,
   onUserCleaningClick,
 }) => {
   return (

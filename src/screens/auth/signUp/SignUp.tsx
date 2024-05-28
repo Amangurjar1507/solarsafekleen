@@ -43,7 +43,7 @@ const SignUp: FC = () => {
       <Animatable.View
         animation="fadeInDown"
         direction="normal"
-        duration={3000}
+        duration={2000}
         style={styles.container}>
         <KeyboardAvoidingView
           style={styles.container}
@@ -59,12 +59,12 @@ const SignUp: FC = () => {
             <View style={styles.mainViewModal}>
               <View style={styles.row}>
                 <Animatable.Text
-                  duration={3000}
+                  duration={2000}
                   animation={'fadeInRightBig'}
                   style={styles.headingText}>
                   Sign up
                 </Animatable.Text>
-                <Animatable.View duration={3000} animation={'fadeInRightBig'}>
+                <Animatable.View duration={2000} animation={'fadeInRightBig'}>
                   <View style={styles.formContainer}>
                     <InputContainer
                       placeholder="E-mail"

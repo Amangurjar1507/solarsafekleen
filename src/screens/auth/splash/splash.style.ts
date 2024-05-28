@@ -4,11 +4,8 @@ import font from '../../../theme/font';
 
 const styles = StyleSheet.create({
   container: {
-     height:'100%',
-     width:"100%"
-  },
-  statusBarContainer: {
-    height: 0,
+    height: '100%',
+    width: '100%',
   },
   servicesText: {
     fontSize: 30,
@@ -32,13 +29,13 @@ const styles = StyleSheet.create({
     backgroundColor: color.buttGray,
     width: 158,
   },
-  solidContainerStyle: {
+  loginContainerStyle: {
     backgroundColor: color.butt,
     width: 158,
   },
   textView: {
-    marginTop:10
-   },
+    marginTop: 10,
+  },
 });
 
 export default styles;

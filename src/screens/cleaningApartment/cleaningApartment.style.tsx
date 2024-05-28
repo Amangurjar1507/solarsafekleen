@@ -124,7 +124,10 @@ const styles = StyleSheet.create({
     backgroundColor: color.label,
     marginTop: 15,
   },
-  row:{flexDirection: 'row'}
+  row: {
+    flexDirection: 'row'
+  },
+  lableStyle: {color: color.black},
 });
 
 export default styles;

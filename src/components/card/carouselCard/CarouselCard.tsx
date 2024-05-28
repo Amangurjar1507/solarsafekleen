@@ -10,14 +10,14 @@ import styles from './carouselCard.style';
 
 interface CarouselCardProps {
   item: ItemProps;
-  key: number;
+  index: number;
   onPress?: () => void;
   nameStyle?: StyleProp<TextStyle> | undefined;
 }
 interface ItemProps {
   image: string;
 }
-const CarouselCard: FC<CarouselCardProps> = ({item, key, onPress}: any) => {
+const CarouselCard: FC<CarouselCardProps> = ({item, index, onPress}: any) => {
   return (
     <View style={styles.itemContainer}>
       <TouchableOpacity style={styles.imgView} onPress={onPress}>

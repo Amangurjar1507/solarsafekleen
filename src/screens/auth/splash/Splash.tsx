@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {ImageBackground, Text, View} from 'react-native';
+import {ImageBackground, Text} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import styles from './splash.style';
 import {Button, CustomStatusbar} from '../../../components/componentsIndex';
@@ -12,8 +12,7 @@ const Splash: FC = () => {
   const {onClickSignUp, onClickLogin} = useSplash();
 
   return (
-    
-    < ImageBackground
+    <ImageBackground
       source={imageIndex.imageBackground}
       style={styles.container}
       resizeMode="stretch">
@@ -22,30 +21,27 @@ const Splash: FC = () => {
         translucent={true}
         barStyle="light-content"
       />
-      <Animatable.View 
+      <Animatable.View
         animation="fadeInDown"
-        duration={3000}
-        style={styles.mainContainer}
-      >
-        <Animatable.View 
+        duration={2000}
+        style={styles.mainContainer}>
+        <Animatable.View
           animation="bounceIn"
           duration={2000}
-          style={styles.textView}
-        >
+          style={styles.textView}>
           <SvgIndex.homeLogo />
           <Text style={styles.servicesText}>
             All services on your Fingertips.
           </Text>
         </Animatable.View>
-        <Animatable.View 
+        <Animatable.View
           animation="fadeInUp"
           duration={1500}
-          style={styles.contentContainer}
-        >
+          style={styles.contentContainer}>
           <Button
             label="Log In"
             onPress={onClickLogin}
-            containerStyle={styles.solidContainerStyle}
+            containerStyle={styles.loginContainerStyle}
           />
           <Button
             label="Sign Up"

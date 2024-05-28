@@ -84,12 +84,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  mainRow:{
-    marginHorizontal: 20
+  mainRow: {
+    marginHorizontal: 20,
   },
-  textRow:{
-    flexDirection: 'row'
-  }
+  textRow: {
+    flexDirection: 'row',
+  },
+  cardImg: {
+    height: 170,
+    width: 240,
+    borderWidth: 1,
+    borderRadius: 10,
+    margin: 1.5,
+  },
 });
 
 export default styles;

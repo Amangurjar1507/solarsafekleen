@@ -9,6 +9,7 @@ interface ActiveCardCardProps {
   onSubmitted?: () => void;
   onCancle?: () => void;
   nameStyle?: StyleProp<TextStyle> | undefined;
+  onCancel?:()=> void
 }
 interface ItemProps {
   id: number;

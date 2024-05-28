@@ -4,13 +4,13 @@ import styles from './apartmentCard.style';
 
 interface CardProps {
   item: ItemProps;
-  key: number;
+  index: number;
  }
 interface ItemProps {
   id: number;
 }
 
-const ApartmentCard: FC<CardProps> = ({item, key}) => {
+const ApartmentCard: FC<CardProps> = ({item, index}) => {
   return (
     <TouchableOpacity style={styles.itemContainer}>
       <View style={styles.column}>

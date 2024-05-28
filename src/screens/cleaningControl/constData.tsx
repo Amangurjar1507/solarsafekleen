@@ -23,4 +23,12 @@ export const CleaningPestsory = [
     title: 'Bathroom Cleaning',
     servies: 'Servies at Home',
   },
+  {
+    id: 4,
+    image:
+      'https://5.imimg.com/data5/SELLER/Default/2022/1/PM/FH/FQ/10338249/bathroom-cleaning-services-500x500.jpeg',
+    prices: '809',
+    title: 'Bathroom Cleaning',
+    servies: 'Servies at Home',
+  },
 ];

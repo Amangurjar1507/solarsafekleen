@@ -4,21 +4,26 @@ import styles from './nextThinkCard.style';
 
 interface NextCardProps {
   item: ItemProps;
-  key: number;
+  index: number;
   onNextClike?: () => void;
+  containerCrad:any;
+  cardImg:any
 }
 interface ItemProps {
   image: string;
   id: number;
+  cardImg:any;
+  containerCrad:any
+
 }
 
-const NextThinkCard: FC<NextCardProps> = ({item, key, onNextClike}) => {
+const NextThinkCard: FC<NextCardProps> = ({item, index, onNextClike,containerCrad,cardImg}) => {
   return (
-    <View style={styles.itemContainer}>
+    <View style={[styles.itemContainer,containerCrad]}>
       <TouchableOpacity style={styles.row} onPress={onNextClike}>
         <Image
           source={{uri: item.image}}
-          style={styles.img}
+          style={[styles.img,cardImg]}
           resizeMode="cover"
         />
       </TouchableOpacity>

@@ -11,7 +11,7 @@ import styles from './seviesCard.style';
  
 interface ServiesCardProps {
   item: ItemProps;
-  key: number;
+  index: number;
   onUserSevies?: () => void;
   nameStyle?: StyleProp<TextStyle> | undefined;
 }
@@ -20,7 +20,7 @@ interface ItemProps {
   name: string;
 }
 
-const SeviesCard: FC<ServiesCardProps> = ({item, key, onUserSevies}) => {
+const SeviesCard: FC<ServiesCardProps> = ({item, index, onUserSevies}) => {
   return (
     <View style={styles.itemContainer}>
       <TouchableOpacity

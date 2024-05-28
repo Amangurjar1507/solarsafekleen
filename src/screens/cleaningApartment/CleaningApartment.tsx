@@ -32,7 +32,7 @@ const CleaningApartment = () => {
       <Header
         backIconsShown
         lable="Cleaning Control"
-        lableStyle={{color: color.black}}
+        lableStyle={styles.lableStyle}
       />
       <ScrollView
         showsVerticalScrollIndicator={false}

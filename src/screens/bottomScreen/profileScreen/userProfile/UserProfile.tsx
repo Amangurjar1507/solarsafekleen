@@ -4,7 +4,6 @@ import {
   Image,
   Text,
   FlatList,
-  ScrollView,
   TouchableOpacity,
 } from 'react-native';
 import {
@@ -19,8 +18,54 @@ import {UserProfileList} from './constData';
 import useUserProfile from './useUserProfile';
 
 const UserProfile = () => {
-  const {onEdit, userData, onLogOut, modal, onNavigation, setModal} =
-    useUserProfile();
+  const {onEdit, userData, onLogOut, modal, onNavigation, setModal} = useUserProfile();
+
+  const renderHeader = () => (
+    <View style={styles.userView}>
+      <Image
+        source={imageIndex.userProfile}
+        style={styles.profieImg}
+        resizeMode="cover"
+      />
+      <Text style={styles.name}>Raghva Gurjar</Text>
+      <Text style={styles.gmailText}>
+        {userData?.email}
+      </Text>
+      <Button
+        label="Edit Profile"
+        onPress={onEdit}
+        containerStyle={styles.editcontainerStyle}
+        nameTextStyle={styles.editTitle}
+      />
+    </View>
+  );
+
+  const renderItem = ({ item }:any) => (
+    <TouchableOpacity
+      activeOpacity={0.7}
+      style={styles.cardView}
+      onPress={() => {
+        if (item.name === 'Logout') {
+          setModal(true);
+        }
+        onNavigation(item.navigateTo);
+      }}>
+      <Image
+        source={item.image}
+        style={styles.nextImg}
+        tintColor={color.label}
+        resizeMode="cover"
+      />
+      <Text style={styles.title}>{item.name}</Text>
+      <Image
+        source={imageIndex.next}
+        style={styles.nextImg}
+        tintColor={color.label}
+        resizeMode="cover"
+      />
+    </TouchableOpacity>
+  );
+
   return (
     <View style={styles.container}>
       <CustomStatusbar
@@ -28,67 +73,15 @@ const UserProfile = () => {
         translucent={true}
         barStyle="dark-content"
       />
-      <ScrollView
+      <FlatList
+        data={UserProfileList}
+        keyExtractor={(item, index) => `${index}`}
+        ListHeaderComponent={renderHeader}
+        renderItem={renderItem}
         showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}>
-        <View style={styles.mainRow}>
-          <View style={styles.userView}>
-            <Image
-              source={imageIndex.userProfile}
-              style={styles.profieImg}
-              resizeMode="cover"
-            />
-            <Text style={styles.name}>Raghva Gurjar</Text>
-            <Text style={styles.gmailText}>
-              {userData?.email}
-            </Text>
-            <Button
-              label="Edit Profile"
-              onPress={onEdit}
-              containerStyle={styles.editcontainerStyle}
-              nameTextStyle={styles.editTitle}
-            />
-          </View>
-          <Text style={styles.profileText}>Profile</Text>
-          <FlatList
-            data={UserProfileList}
-            keyExtractor={(item, index) => {
-              return `${index}`;
-            }}
-            renderItem={item => {
-              return (
-                <TouchableOpacity
-                  activeOpacity={0.7}
-                  style={styles.cardView}
-                  onPress={() => {
-                    if (item?.item?.name == 'Logout') {
-                      setModal(true);
-                    }
-                    {
-                      onNavigation(item?.item?.navigateTo);
-                    }
-                  }}>
-                  <Image
-                    source={item?.item?.image}
-                    style={styles.nextImg}
-                    tintColor={color.label}
-                    resizeMode="cover"
-                  />
-                  <Text style={styles.title}>{item.item.name}</Text>
-                  <Image
-                    source={imageIndex.next}
-                    style={styles.nextImg}
-                    tintColor={color.label}
-                    resizeMode="cover"
-                  />
-                </TouchableOpacity>
-              );
-            }}
-            showsVerticalScrollIndicator={false}
-            showsHorizontalScrollIndicator={false}
-          />
-        </View>
-      </ScrollView>
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.mainRow}
+      />
       <ModalComponent animationType="none" visible={modal}>
         <TouchableOpacity
           style={styles.modalView}
@@ -106,9 +99,7 @@ const UserProfile = () => {
               <Button
                 label="Cancel"
                 containerStyle={styles.containerCancel}
-                onPress={() => {
-                  setModal(false);
-                }}
+                onPress={() => setModal(false)}
                 nameTextStyle={styles.nameTextStyle}
               />
             </View>

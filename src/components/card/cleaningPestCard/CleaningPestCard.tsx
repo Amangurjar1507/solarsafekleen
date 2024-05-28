@@ -11,7 +11,7 @@ import styles from './cleaningPestCard.style';
 
 interface CleaningCardProps {
   item: ItemProps;
-  key: number;
+  index: number;
   onUserCleaningClick?: () => void;
   nameStyle?: StyleProp<TextStyle> | undefined;
 }
@@ -25,7 +25,7 @@ interface ItemProps {
 
 const cleaningPestCard: FC<CleaningCardProps> = ({
   item,
-  key,
+  index,
   onUserCleaningClick,
 }) => {
   return (

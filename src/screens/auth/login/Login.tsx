@@ -41,7 +41,7 @@ const Login: FC = () => {
       <Animatable.View
         animation="fadeInDown"
         direction="normal"
-        duration={3000}
+        duration={2000}
         style={styles.keyboardView}>
         <KeyboardAvoidingView
           style={styles.keyboardView}
@@ -57,13 +57,13 @@ const Login: FC = () => {
             <View style={styles.mainViewModal}>
               <View style={styles.row}>
                 <Animatable.Text
-                  duration={3000}
+                  duration={2000}
                   animation={'fadeInRightBig'}
                   style={styles.headingText}>
                   Log in
                 </Animatable.Text>
                 <Animatable.View
-                  duration={3000}
+                  duration={2000}
                   animation={'fadeInRightBig'}
                   style={styles.formContainer}>
                   <InputContainer
