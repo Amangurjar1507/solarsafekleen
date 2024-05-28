@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     backgroundColor: color.butt,
   },
   containerCancel: {
-    width: '100%', // Make button take full width of the container
+    width: '100%', 
     backgroundColor: color.label,
     marginTop: 12,
   },
